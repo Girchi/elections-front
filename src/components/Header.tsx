@@ -28,11 +28,15 @@ const Header = () => {
 
 export default Header;
 
-const HeaderSection = styled.div``;
+const HeaderSection = styled.div`
+background: #FFFFFF;
+`;
 
 const MainHeader = styled.div`
   width: 80%;
-  margin: 16px auto;
+  gap: 2rem;
+  margin: auto;
+  padding: 16px 0;
   display: flex;
   justify-content: space-between;
 `;
