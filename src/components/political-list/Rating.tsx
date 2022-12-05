@@ -37,7 +37,7 @@ const ListDiv = styled.div`
   padding-top: 12px;
   padding-left: 12px;
   padding-bottom: 12px;
-  font-family: "TBC Contractica";
+  /* font-family: "TBC Contractica"; */
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -55,7 +55,7 @@ const RatingDiv = styled.div`
   padding-top: 12px;
   padding-left: 12px;
   gap: 12px;
-  font-family: "TBC Contractica";
+  /* font-family: "TBC Contractica"; */
   font-style: normal;
   font-weight: 500;
   font-size: 14px;

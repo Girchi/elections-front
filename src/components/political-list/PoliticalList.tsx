@@ -2,8 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import plus from "../../images/plus.png";
 import Rating from "./Rating";
+import { ModalProps } from "../ModalPayment";
 
-const PoliticalList = () => {
+const PoliticalList: React.FC<ModalProps> = ({ setModal }) => {
+
+
   return (
     <MainContainer>
       <Rating />
@@ -14,7 +17,7 @@ const PoliticalList = () => {
             გამოყავი თანხა, აირჩიე პოლიტიკოსები, დააფინანსე და შექმენი სია
           </h3>
         </TextDiv>
-        <button>
+        <button onClick={() => setModal(true)}>
           გამოყავი თანხა
           <img src={plus} alt="plus" />
         </button>
@@ -48,7 +51,7 @@ const ButtonTextContainer = styled.div`
     border-radius: 56px;
     outline: none;
     border: none;
-    font-family: "TBC Contractica";
+    /* font-family: "TBC Contractica"; */
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -67,7 +70,7 @@ const TextDiv = styled.div`
   gap: 4px;
 
   h2 {
-    font-family: "TBC Contractica";
+    /* font-family: "TBC Contractica"; */
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -78,7 +81,7 @@ const TextDiv = styled.div`
     color: #292d33;
   }
   h3 {
-    font-family: "TBC Contractica";
+    /* font-family: "TBC Contractica1"; */
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
