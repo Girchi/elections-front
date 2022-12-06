@@ -29,9 +29,9 @@ const Header = () => {
 export default Header;
 
 const HeaderSection = styled.div`
-font-family: 'TBC Contractica';
-font-style: normal;
-background: #FFFFFF;
+  font-family: "TBC Contractica";
+  font-style: normal;
+  background: #ffffff;
 `;
 
 const MainHeader = styled.div`

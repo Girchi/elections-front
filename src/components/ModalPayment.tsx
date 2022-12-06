@@ -1,161 +1,283 @@
-import React from 'react'
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import styled from 'styled-components'
-import Xicon from '../images/xIcon.svg'
-import Ged from '../images/GeD.png'
+import styled from "styled-components";
+import Xicon from "../images/xIcon.svg";
+import Ged from "../images/GeD.png";
 
 export interface ModalProps {
-    setModal: React.Dispatch<React.SetStateAction<boolean>>
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowPoliticalList: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ModalPayment: React.FC<ModalProps> = ({ setModal }) => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
+const ModalPayment: React.FC<ModalProps> = ({
+  setModal,
+  setShowPoliticalList,
+}) => {
+  const [input, setInput] = useState<number | string>("");
+  const [checkboxInput, setCheckboxInput] = useState<string | boolean>(true);
 
-    type Inputs = {
-        example: number,
-        exampleRequired: string,
-    };
+  let fullBalance = 1000000;
+  let remainedBalance = fullBalance - Number(input);
+  const changeInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
+  };
+  if (input < 0) {
+    setInput("");
+  }
 
-    const closeHandler = () => {
-        setModal(prev => !prev)
+  const checkboxHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCheckboxInput((prev) => !prev);
+    if (checkboxInput) {
+      setInput(fullBalance);
+    } else {
+      setInput("");
     }
+  };
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
-    return (
-        <ModalContainer>
-            <Modal>
-                <ModalHeader>
-                    <h3>შეიყვანე თანხა</h3>
-                    <img onClick={closeHandler} src={Xicon} alt="cancel" />
-                </ModalHeader>
-                <ModalBody onSubmit={handleSubmit(onSubmit)}>
-                    <BalanceDiv>
-                        <h3>პირადი ბალანსი</h3>
-                        <h4>10 000 000 GeD</h4>
-                    </BalanceDiv>
-                    <ModalCenter>
-                        <h3>
-                            შეიყვანე შენი პარტიის მხარდასაჭერი რაოდენობა შენი ბალანსიდან
-                        </h3>
-                    </ModalCenter>
-                    <ModalInput>
-                        <h3>მხარდასაჭერი თანხა</h3>
-                        <MoneyInput style={{ borderColor: errors.exampleRequired ? 'red' : '' }} type="number" placeholder='0' {...register("exampleRequired", { required: true })} />
-                        <ErrorDiv> {errors.exampleRequired && <span style={{ fontSize: '13px' }}>შეიყვანე თანხა!</span>}</ErrorDiv>
-                        <IconsContainer>
-                            <h3 style={{ display: 'block', width: '100px' }}>მთელი ბალანსი</h3>
-                            <CheckboxContainer>
-                                <CheckBox id="checkbox" type="checkbox" />
-                                <CheckBoxLabel htmlFor="checkbox" />
-                            </CheckboxContainer>
-                            <img src={Ged} alt="ged" />
-                        </IconsContainer>
-                    </ModalInput>
+  type Inputs = {
+    example: number;
+    exampleRequired: string;
+  };
 
-                </ModalBody>
-                <ButtonContainer>
-                    <span onClick={closeHandler}>უკან</span>
-                    <button>
-                        დადასტურება
-                    </button>
-                </ButtonContainer>
+  const closeHandler = () => {
+    setModal((prev) => !prev);
+  };
+  const closeAndShowPoliticalListHandler = () => {
+    setModal((prev) => !prev);
+    setShowPoliticalList(false);
+  };
 
-            </Modal>
-        </ModalContainer>
-    )
-}
+  return (
+    <ModalContainer>
+      <Modal>
+        <ModalHeader>
+          <h3>შეიყვანე თანხა</h3>
+          <img
+            onClick={closeHandler}
+            src={Xicon}
+            alt="cancel"
+            style={{ cursor: "pointer" }}
+          />
+        </ModalHeader>
+        <ModalBody onSubmit={handleSubmit(onSubmit)}>
+          <BalanceDiv>
+            <BalancedContainer>
+              <BalanseInfo>
+                <h3>პირადი ბალანსი</h3>
+                {input && <h3>ფსონი</h3>}
+              </BalanseInfo>
+              <BalanseNumbers>
+                <h4>{fullBalance} GeD</h4>
+                {input && <h5>{input} GeD</h5>}
+              </BalanseNumbers>
+            </BalancedContainer>
+            {input && <BorderLine></BorderLine>}
 
-export default ModalPayment
+            {input && (
+              <RemainingBalance>
+                <h4
+                  style={{
+                    color: input > fullBalance ? "red" : "",
+                  }}
+                >
+                  {input > fullBalance ? "არასაკმარისი GeD" : "ნაშთი"}
+                </h4>
+                <h5
+                  style={{
+                    color: input > fullBalance ? "red" : "",
+                  }}
+                >
+                  {remainedBalance} Ged
+                </h5>
+              </RemainingBalance>
+            )}
+          </BalanceDiv>
+          <ModalCenter>
+            <h3>
+              შეიყვანე შენი პარტიის მხარდასაჭერი რაოდენობა შენი ბალანსიდან
+            </h3>
+          </ModalCenter>
+          <ModalInput>
+            <h3>მხარდასაჭერი თანხა</h3>
+            <MoneyInput
+              {...register("exampleRequired", { required: true })}
+              onChange={changeInputHandler}
+              value={input}
+              style={{ borderColor: errors.exampleRequired ? "red" : "" }}
+              type="number"
+              placeholder="0"
+            />
+            <ErrorDiv>
+              {" "}
+              {errors.exampleRequired && (
+                <span style={{ fontSize: "13px" }}>შეიყვანე თანხა!</span>
+              )}
+            </ErrorDiv>
+            <IconsContainer>
+              <h3 style={{ display: "block", width: "100px" }}>
+                მთელი ბალანსი
+              </h3>
+              <CheckboxContainer>
+                <CheckBox
+                  id="checkbox"
+                  type="checkbox"
+                  onChange={checkboxHandler}
+                />
+                <CheckBoxLabel htmlFor="checkbox" />
+              </CheckboxContainer>
+              <img src={Ged} alt="ged" />
+            </IconsContainer>
+          </ModalInput>
+        </ModalBody>
+        <ButtonContainer>
+          <span onClick={closeHandler}>უკან</span>
+          <button onClick={closeAndShowPoliticalListHandler}>
+            დადასტურება
+          </button>
+        </ButtonContainer>
+      </Modal>
+    </ModalContainer>
+  );
+};
 
+export default ModalPayment;
 
 const ModalContainer = styled.div`
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    background-color: rgba(27, 33, 39, 0.56);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`
-
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  background-color: rgba(27, 33, 39, 0.56);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const Modal = styled.div`
-    max-width: 432px;
-    width: 100%;
-    background-color: #FFFFFF;
-    border-radius: 8px;
-`
+  max-width: 432px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+`;
 
 const ModalHeader = styled.div`
-    display: flex;
-    justify-content: space-between;
-    border-width: 1px ;
-    border-bottom: 1px solid #E0E2E7;
-    padding: 18px 24px;
-`
+  display: flex;
+  justify-content: space-between;
+  border-width: 1px;
+  border-bottom: 1px solid #e0e2e7;
+  padding: 18px 24px;
+`;
 
 const ModalBody = styled.form`
-    display: flex;
-    flex-direction: column;
-    padding: 24px 24px 0 24px;
-    flex-direction: column;
-    gap: 24px;
-    font-family: 'TBC Contractica1';
-    line-height: 24px;
-`
+  display: flex;
+  flex-direction: column;
+  padding: 24px 24px 0 24px;
+  flex-direction: column;
+  gap: 24px;
+  font-family: "TBC Contractica1";
+  line-height: 24px;
+`;
 
 const BalanceDiv = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(41, 45, 51, 0.04);
-    border-radius: 6px;
-    padding: 16px;
-`
+  background: rgba(41, 45, 51, 0.04);
+  border-radius: 6px;
+  padding: 16px;
+`;
+const BalancedContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const BalanseInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  h3 {
+    font-style: normal;
+    font-weight: 500;
+    color: #727a82;
+    font-size: 14px;
+    line-height: 16px;
+  }
+`;
+const BalanseNumbers = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  h5 {
+    color: red;
+    text-align: end;
+  }
+`;
+const BorderLine = styled.div`
+  border-bottom: 1px solid #e0e2e7;
+  margin-top: 16px;
+`;
+const RemainingBalance = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+
+  h4 {
+    color: #727a82;
+  }
+`;
 
 const ModalCenter = styled.div`
-    
-`
+  h3 {
+    opacity: 0.5;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+  }
+`;
 
 const ModalInput = styled.div`
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    position: relative;
-`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  position: relative;
+`;
 
 const MoneyInput = styled.input`
-margin-top: 10px;
-    padding: 16px 14px;
-    border: none;
-    background: #FFFFFF;
-    border: 1px solid #E0E2E7;
-    border-radius: 6px;
-    :focus {
-        outline: none;
-    }
-   
-`
+  margin-top: 10px;
+  padding: 16px 14px;
+  border: none;
+  background: #ffffff;
+  border: 1px solid #e0e2e7;
+  border-radius: 6px;
+
+  :focus {
+    outline: none;
+  }
+`;
 
 const IconsContainer = styled.div`
-position: absolute;
-display: flex;
-align-items: center;
-gap: 10px;
-top: 36%;
-left: 50%;
-h3{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  top: 36%;
+  left: 50%;
+  h3 {
     font-size: 12px;
     line-height: 16px;
     color: rgba(114, 122, 130, 0.75);
-}
-`
+  }
+`;
 
 const CheckboxContainer = styled.div`
-    position: relative;
-`
+  position: relative;
+`;
 
 const CheckBoxLabel = styled.label`
   position: absolute;
@@ -199,30 +321,34 @@ const CheckBox = styled.input`
 `;
 
 const ButtonContainer = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 20px 24px;
-     border-width: 1px;
-   
-    border-top: 1px solid #E0E2E7;
-    button{
-        width: 154px;
-        height: 40px;
-        background: #1A8917;
-        border-radius: 32px;
-        border: none;
-        padding: 8px 24px;
-        letter-spacing: 0.02em;
-        color: #FFFFFF;
-        margin-left: 30px;
-        opacity: 1;
-    } 
-`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px 24px;
+  border-width: 1px;
+
+  border-top: 1px solid #e0e2e7;
+  button {
+    width: 154px;
+    height: 40px;
+    background: #1a8917;
+    border-radius: 32px;
+    border: none;
+    padding: 8px 24px;
+    letter-spacing: 0.02em;
+    color: #ffffff;
+    margin-left: 30px;
+    opacity: 1;
+    cursor: pointer;
+  }
+  span {
+    cursor: pointer;
+  }
+`;
 
 const ErrorDiv = styled.div`
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 40px;
-`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+`;
