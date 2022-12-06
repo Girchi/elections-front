@@ -7,13 +7,17 @@ import Ged from "../images/GeD.png";
 export interface ModalProps {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
   setShowPoliticalList: React.Dispatch<React.SetStateAction<boolean>>;
+  input: string | number;
+  setInput: React.Dispatch<React.SetStateAction<string | number>>;
 }
 
 const ModalPayment: React.FC<ModalProps> = ({
   setModal,
   setShowPoliticalList,
+  input,
+  setInput,
 }) => {
-  const [input, setInput] = useState<number | string>("");
+  // const [input, setInput] = useState<number | string>("");
   const [checkboxInput, setCheckboxInput] = useState<string | boolean>(true);
 
   let fullBalance = 1000000;
@@ -50,8 +54,10 @@ const ModalPayment: React.FC<ModalProps> = ({
     setModal((prev) => !prev);
   };
   const closeAndShowPoliticalListHandler = () => {
-    setModal((prev) => !prev);
-    setShowPoliticalList(false);
+    if (input && input <= fullBalance) {
+      setModal((prev) => !prev);
+      setShowPoliticalList(false);
+    }
   };
 
   return (

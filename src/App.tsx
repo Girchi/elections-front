@@ -8,6 +8,7 @@ import "./font/TBCContractica-Bold.ttf";
 function App() {
   const [modal, setModal] = useState(false);
   const [showPoliticalList, setShowPoliticalList] = useState(true);
+  const [input, setInput] = useState<number | string>("");
 
   return (
     <Main>
@@ -15,12 +16,15 @@ function App() {
         <ModalPayment
           setModal={setModal}
           setShowPoliticalList={setShowPoliticalList}
+          input={input}
+          setInput={setInput}
         />
       )}
       <Header />
       <PoliticalList
         setModal={setModal}
         showPoliticalList={showPoliticalList}
+        input={input}
       />
     </Main>
   );
