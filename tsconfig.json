@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "../index.d.ts", "../index.d.ts"  ]
+, "../index.d.ts", "../index.d.ts", "src/components/political-list/.tsx"  ]
 }
