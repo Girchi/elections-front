@@ -5,6 +5,7 @@ import Rating from "./Rating";
 // import { ModalProps } from "../ModalPayment";
 import SeparatedMoney from "../political-list/SeparatedMoney";
 import plusIcon from "../../images/plusicon.png";
+import ChooseCandidat from "./ChooseCandidat";
 
 interface ListProps {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -48,6 +49,7 @@ const PoliticalList: React.FC<ListProps> = ({
             </button>
           </ButtonDiv>
         )}
+        <ChooseCandidat/>
       </MainDiv>
     </MainContainer>
   );
