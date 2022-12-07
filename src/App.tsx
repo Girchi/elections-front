@@ -25,6 +25,7 @@ function App() {
         setModal={setModal}
         showPoliticalList={showPoliticalList}
         input={input}
+        setInput={setInput}
       />
     </Main>
   );
