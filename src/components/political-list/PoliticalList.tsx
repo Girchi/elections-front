@@ -5,7 +5,7 @@ import Rating from "./Rating";
 // import { ModalProps } from "../ModalPayment";
 import SeparatedMoney from "../political-list/SeparatedMoney";
 import plusIcon from "../../images/plusicon.png";
-import AddPolitican from "./AddPolitican";
+import ChooseCandidat from "./ChooseCandidat";
 
 interface ListProps {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,7 +24,6 @@ const PoliticalList: React.FC<ListProps> = ({
     <MainContainer>
       <Rating />
       <MainDiv>
-        <div>
         <ButtonTextContainer>
           <TextDiv>
             <h2>შექმენი შენი პარტიული სია</h2>
@@ -50,8 +49,7 @@ const PoliticalList: React.FC<ListProps> = ({
             </button>
           </ButtonDiv>
         )}
-        </div>
-        <AddPolitican/>
+        <ChooseCandidat/>
       </MainDiv>
     </MainContainer>
   );
