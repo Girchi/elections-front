@@ -21,6 +21,9 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
-, "../index.d.ts", "../index.d.ts", "src/components/political-list/.tsx"  ]
+    "src",
+    "../index.d.ts",
+    "../index.d.ts",
+    "src/components/political-list/.tsx"
+  ]
 }

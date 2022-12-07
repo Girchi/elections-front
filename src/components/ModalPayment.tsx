@@ -3,12 +3,14 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import styled from "styled-components";
 import Xicon from "../images/xIcon.svg";
 import Ged from "../images/GeD.png";
+import { setTextRange } from "typescript";
 
 export interface ModalProps {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
   setShowPoliticalList: React.Dispatch<React.SetStateAction<boolean>>;
   input: string | number;
   setInput: React.Dispatch<React.SetStateAction<string | number>>;
+
 }
 
 const ModalPayment: React.FC<ModalProps> = ({
@@ -20,10 +22,14 @@ const ModalPayment: React.FC<ModalProps> = ({
   // const [input, setInput] = useState<number | string>("");
   const [checkboxInput, setCheckboxInput] = useState<string | boolean>(true);
 
-  let fullBalance = 1000000;
-  let remainedBalance = fullBalance - Number(input);
+
+  const [balance, setBalance] = useState(1000000);
+  const [remaining, setRemaining] = useState<null | number>(null)
+
+
   const changeInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
+    setRemaining(balance - Number(input));
   };
   if (input < 0) {
     setInput("");
@@ -32,7 +38,7 @@ const ModalPayment: React.FC<ModalProps> = ({
   const checkboxHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCheckboxInput((prev) => !prev);
     if (checkboxInput) {
-      setInput(fullBalance);
+      setInput(balance);
     } else {
       setInput("");
     }
@@ -54,7 +60,7 @@ const ModalPayment: React.FC<ModalProps> = ({
     setModal((prev) => !prev);
   };
   const closeAndShowPoliticalListHandler = () => {
-    if (input && input <= fullBalance) {
+    if (input && input <= balance) {
       setModal((prev) => !prev);
       setShowPoliticalList(false);
     }
@@ -80,7 +86,7 @@ const ModalPayment: React.FC<ModalProps> = ({
                 {input && <h3>ფსონი</h3>}
               </BalanseInfo>
               <BalanseNumbers>
-                <h4>{fullBalance} GeD</h4>
+                <h4>{balance} GeD</h4>
                 {input && <h5>{input} GeD</h5>}
               </BalanseNumbers>
             </BalancedContainer>
@@ -90,17 +96,17 @@ const ModalPayment: React.FC<ModalProps> = ({
               <RemainingBalance>
                 <h4
                   style={{
-                    color: input > fullBalance ? "red" : "",
+                    color: input > balance ? "red" : "",
                   }}
                 >
-                  {input > fullBalance ? "არასაკმარისი GeD" : "ნაშთი"}
+                  {input > balance ? "არასაკმარისი GeD" : "ნაშთი"}
                 </h4>
                 <h5
                   style={{
-                    color: input > fullBalance ? "red" : "",
+                    color: input > balance ? "red" : "",
                   }}
                 >
-                  {remainedBalance} Ged
+                  {remaining} Ged
                 </h5>
               </RemainingBalance>
             )}

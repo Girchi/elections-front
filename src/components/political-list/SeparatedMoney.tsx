@@ -4,15 +4,23 @@ import editImage from "../../images/coolicon.png";
 
 interface ListProps {
   input: string | number;
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setInput: React.Dispatch<React.SetStateAction<string | number>>
 }
 
-const SeperatedMoney: React.FC<ListProps> = ({ input }) => {
+const SeparatedMoney: React.FC<ListProps> = ({ input, setModal, setInput }) => {
+
+  const clickHandler = () => {
+    setModal(true);
+    setInput("")
+  }
+
   return (
     <MainDiv>
       <MoneyDiv>
         <EditInfo>
           <h3>{input}</h3>
-          <img src={editImage} alt="edit" style={{ cursor: "pointer" }} />
+          <img onClick={clickHandler} src={editImage} alt="edit" style={{ cursor: "pointer" }} />
         </EditInfo>
         <span>გამოყოფილი საპარტიო თანხა</span>
       </MoneyDiv>
@@ -21,7 +29,7 @@ const SeperatedMoney: React.FC<ListProps> = ({ input }) => {
   );
 };
 
-export default SeperatedMoney;
+export default SeparatedMoney;
 
 const MainDiv = styled.div`
   display: flex;

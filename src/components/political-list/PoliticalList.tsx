@@ -3,19 +3,21 @@ import styled from "styled-components";
 import plus from "../../images/plus.png";
 import Rating from "./Rating";
 // import { ModalProps } from "../ModalPayment";
-import SeperatedMoney from "../political-list/SeperatedMoney";
+import SeparatedMoney from "../political-list/SeparatedMoney";
 import plusIcon from "../../images/plusicon.png";
 
 interface ListProps {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
   showPoliticalList: boolean;
   input: string | number;
+  setInput: React.Dispatch<React.SetStateAction<string | number>>
 }
 
 const PoliticalList: React.FC<ListProps> = ({
   setModal,
   showPoliticalList,
   input,
+  setInput
 }) => {
   return (
     <MainContainer>
@@ -35,7 +37,7 @@ const PoliticalList: React.FC<ListProps> = ({
               <img src={plus} alt="plus" />
             </button>
           ) : (
-            <SeperatedMoney input={input} />
+            <SeparatedMoney setModal={setModal} input={input} setInput={setInput} />
           )}
         </ButtonTextContainer>
         {!showPoliticalList && (
