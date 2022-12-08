@@ -59,10 +59,10 @@ const PoliticalList: React.FC<ListProps> = ({
         {showChosenCandidat && <ChooseCandidat />}
         {!showPoliticalList && (
           <ButtonDiv>
-            <button onClick={() => setChosenCandidat(true)}>
+            <ButtonD onClick={() => setChosedCandidat(true)}>
               დაამატე პოლიტიკოსი
               <img src={plusIcon} alt="plus-img" />
-            </button>
+            </ButtonD>
             {/* <DraftPublish/> */}
           </ButtonDiv>
         )}
@@ -139,15 +139,16 @@ const TextDiv = styled.div`
 const ButtonDiv = styled.div`
   border-top: 1px solid #e0e2e7;
   padding-top: 25px;
+  display: flex;
+`;
 
-  button {
-    width: 264px;
+const ButtonD =styled.button`
+  width: 264px;
     height: 48px;
     display: flex;
     gap: 10px;
     align-items: center;
     justify-content: space-evenly;
-    background: #f3f3f4;
     border-radius: 56px;
     border: none;
     cursor: pointer;
@@ -156,5 +157,5 @@ const ButtonDiv = styled.div`
     line-height: 24px;
     letter-spacing: 0.02em;
     color: #292d33;
-  }
-`;
+    background: #F3F3F4;
+`
