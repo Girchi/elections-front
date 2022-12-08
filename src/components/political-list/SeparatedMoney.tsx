@@ -3,21 +3,32 @@ import gedImg from "../../images/Gedimg.png";
 import editImage from "../../images/coolicon.png";
 
 interface ListProps {
-  input: string | number;
+  input: number;
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
-  setInput: React.Dispatch<React.SetStateAction<string | number>>;
+  setInput: React.Dispatch<React.SetStateAction<number>>;
+  money: number;
 }
 
-const SeparatedMoney: React.FC<ListProps> = ({ input, setModal, setInput }) => {
+const SeparatedMoney: React.FC<ListProps> = ({
+  input,
+  setModal,
+  setInput,
+  money,
+}) => {
   const clickHandler = () => {
     setModal(true);
   };
+  // console.log("input", input);
+  // console.log("money", money);
+
+  // const anotherMoney = input + money;
+  // console.log("fullMoney", anotherMoney);
 
   return (
     <MainDiv>
       <MoneyDiv>
         <EditInfo>
-          <h3>{input}</h3>
+          <h3>{money}</h3>
           <img
             onClick={clickHandler}
             src={editImage}

@@ -4,13 +4,13 @@ import Header from "./components/Header";
 import ModalPayment from "./components/ModalPayment";
 import PoliticalList from "./components/political-list/PoliticalList";
 import "./font/TBCContractica-Bold.ttf";
-
 function App() {
   const [modal, setModal] = useState(false);
   const [showPoliticalList, setShowPoliticalList] = useState(true);
-  const [input, setInput] = useState<number | string>("");
-  const [showChosedCandidat, setChosedCandidat] = useState(false);
-  const [supportAmount, setSupportAmount] = useState(0);
+  const [input, setInput] = useState(0);
+  const [money, setMoney] = useState(0);
+  const [showChosenCandidat, setChosenCandidat] = useState(false);
+  const [balance, setBalance] = useState(1000);
 
   return (
     <Main>
@@ -20,18 +20,22 @@ function App() {
           setShowPoliticalList={setShowPoliticalList}
           input={input}
           setInput={setInput}
+          money={money}
+          setMoney={setMoney}
+          balance={balance}
+          setBalance={setBalance}
         />
       )}
       <Header />
       <PoliticalList
-        supportAmount={supportAmount}
-        setSupportAmount={setSupportAmount}
         setModal={setModal}
         showPoliticalList={showPoliticalList}
         input={input}
         setInput={setInput}
-        showChosedCandidat={showChosedCandidat}
-        setChosedCandidat={setChosedCandidat}
+        showChosenCandidat={showChosenCandidat}
+        setChosenCandidat={setChosenCandidat}
+        money={money}
+        setMoney={setMoney}
       />
     </Main>
   );

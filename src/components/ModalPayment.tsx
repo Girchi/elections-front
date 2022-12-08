@@ -7,8 +7,12 @@ import Ged from "../images/GeD.png";
 export interface ModalProps {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
   setShowPoliticalList: React.Dispatch<React.SetStateAction<boolean>>;
-  input: string | number;
-  setInput: React.Dispatch<React.SetStateAction<string | number>>;
+  input: number;
+  setInput: React.Dispatch<React.SetStateAction<number>>;
+  money: number;
+  setMoney: React.Dispatch<React.SetStateAction<number>>;
+  balance: number;
+  setBalance: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const ModalPayment: React.FC<ModalProps> = ({
@@ -16,19 +20,31 @@ const ModalPayment: React.FC<ModalProps> = ({
   setShowPoliticalList,
   input,
   setInput,
+  money,
+  setMoney,
+  balance,
+  setBalance,
 }) => {
   // const [input, setInput] = useState<number | string>("");
   const [checkboxInput, setCheckboxInput] = useState<string | boolean>(true);
 
-  const [balance, setBalance] = useState(1000000);
-  const [remaining, setRemaining] = useState<null | number>(null);
+  // console.log(balance);
+  const correctNumber = (number: number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  };
 
   const changeInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
-    setRemaining(balance - Number(input));
+    if (e.target.valueAsNumber <= 5000000000) {
+      setInput(e.target.valueAsNumber);
+    }
+    if (e.target.value === "") {
+      setInput(0);
+    }
   };
+  const remainingBalance = correctNumber(Math.abs(balance - Number(input)));
+
   if (input < 0) {
-    setInput("");
+    setInput(0);
   }
 
   const checkboxHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,7 +52,7 @@ const ModalPayment: React.FC<ModalProps> = ({
     if (checkboxInput) {
       setInput(balance);
     } else {
-      setInput("");
+      setInput(0);
     }
   };
 
@@ -57,8 +73,12 @@ const ModalPayment: React.FC<ModalProps> = ({
   };
   const closeAndShowPoliticalListHandler = () => {
     if (input && input <= balance) {
-      setModal((prev) => !prev);
+      setModal(false);
       setShowPoliticalList(false);
+      setMoney(input);
+      // setBalance(input);
+      setInput(0);
+      setBalance(balance - input + money);
     }
   };
 
@@ -79,16 +99,16 @@ const ModalPayment: React.FC<ModalProps> = ({
             <BalancedContainer>
               <BalanseInfo>
                 <h3>პირადი ბალანსი</h3>
-                {input && <h3>ფსონი</h3>}
+                {input > 0 && <h3>ფსონი</h3>}
               </BalanseInfo>
               <BalanseNumbers>
-                <h4>{balance} GeD</h4>
-                {input && <h5>{input} GeD</h5>}
+                <h4>{correctNumber(balance)} GeD</h4>
+                {input > 0 && <h5>{correctNumber(input)} GeD</h5>}
               </BalanseNumbers>
             </BalancedContainer>
-            {input && <BorderLine></BorderLine>}
+            {input > 0 && <BorderLine></BorderLine>}
 
-            {input && (
+            {input > 0 && (
               <RemainingBalance>
                 <h4
                   style={{
@@ -102,7 +122,7 @@ const ModalPayment: React.FC<ModalProps> = ({
                     color: input > balance ? "red" : "",
                   }}
                 >
-                  {remaining} Ged
+                  {balance >= Number(input) ? "" : "-"} {remainingBalance} Ged
                 </h5>
               </RemainingBalance>
             )}
@@ -117,7 +137,7 @@ const ModalPayment: React.FC<ModalProps> = ({
             <MoneyInput
               {...register("exampleRequired", { required: true })}
               onChange={changeInputHandler}
-              value={input}
+              value={input > 0 ? input : ""}
               style={{ borderColor: errors.exampleRequired ? "red" : "" }}
               type="number"
               placeholder="0"
@@ -267,6 +287,17 @@ const MoneyInput = styled.input`
 
   :focus {
     outline: none;
+  }
+  /* Chrome, Safari, Edge, Opera */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  &[type="number"] {
+    -moz-appearance: textfield;
   }
 `;
 
