@@ -10,6 +10,7 @@ function App() {
   const [showPoliticalList, setShowPoliticalList] = useState(true);
   const [input, setInput] = useState<number | string>("");
   const [showChosedCandidat, setChosedCandidat] = useState(false);
+  const [supportAmount, setSupportAmount] = useState(0);
 
   return (
     <Main>
@@ -23,6 +24,8 @@ function App() {
       )}
       <Header />
       <PoliticalList
+        supportAmount={supportAmount}
+        setSupportAmount={setSupportAmount}
         setModal={setModal}
         showPoliticalList={showPoliticalList}
         input={input}

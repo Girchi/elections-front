@@ -14,6 +14,8 @@ interface ListProps {
   setInput: React.Dispatch<React.SetStateAction<string | number>>;
   showChosedCandidat: boolean;
   setChosedCandidat: React.Dispatch<React.SetStateAction<boolean>>;
+  supportAmount: React.Dispatch<React.SetStateAction<string | number>>;
+  setSupportAmount: React.Dispatch<React.SetStateAction<string | number>>;
 }
 
 const PoliticalList: React.FC<ListProps> = ({
@@ -23,6 +25,8 @@ const PoliticalList: React.FC<ListProps> = ({
   setInput,
   showChosedCandidat,
   setChosedCandidat,
+  supportAmount,
+  setSupportAmount,
 }) => {
   return (
     <MainContainer>
@@ -50,7 +54,7 @@ const PoliticalList: React.FC<ListProps> = ({
           )}
         </ButtonTextContainer>
 
-        {showChosedCandidat && <ChooseCandidat />}
+        {showChosedCandidat && <ChooseCandidat supportAmount={supportAmount} setSupportAmount={setSupportAmount} />}
         {!showPoliticalList && (
           <ButtonDiv>
             <button onClick={() => setChosedCandidat(true)}>
@@ -94,7 +98,6 @@ const ButtonTextContainer = styled.div`
     outline: none;
     border: none;
     cursor: pointer;
-    /* font-family: "TBC Contractica"; */
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -113,7 +116,6 @@ const TextDiv = styled.div`
   gap: 4px;
 
   h2 {
-    /* font-family: "TBC Contractica"; */
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -124,7 +126,6 @@ const TextDiv = styled.div`
     color: #292d33;
   }
   h3 {
-    /* font-family: "TBC Contractica1"; */
     font-style: normal;
     font-weight: 500;
     font-size: 14px;

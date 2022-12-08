@@ -1,15 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import arrow from "../../images/arrow.png";
 import Delete from "../../images/trash.png";
 import Select, { components, OptionProps } from "react-select";
 
-const ChooseCandidat = () => {
+const ChooseCandidat = ({supportAmount, setSupportAmount}) => {
   const Option = (props: any) => {
     return (
       <div>
         <components.Option {...props}>
-          <img src="https://i.picsum.photos/id/153/24/24.jpg?hmac=HhBzaFkAtefIH3nCY7r2lHLaWodBZ57Jkq7-yR3Sk30" />
+          <img style={{borderRadius: "50%"}} src="https://i.picsum.photos/id/153/24/24.jpg?hmac=HhBzaFkAtefIH3nCY7r2lHLaWodBZ57Jkq7-yR3Sk30" />
           {props.value}
         </components.Option>
       </div>
@@ -31,9 +30,13 @@ const ChooseCandidat = () => {
             styles={{
               option: (base) => ({
                 ...base,
-                border: `1px solid red`,
-                minWidth: "340",
-                height: "44",
+                border: `none`,
+                minWidth: "340px",
+                minHeight: "44px",
+                display: "flex",
+                columnGap: "15px",
+                alignItems: "center",
+                outline: "none",  
               }),
             }}
             components={{ Option }}
@@ -45,7 +48,7 @@ const ChooseCandidat = () => {
         <MoneyChanger>
           <IconsContainer>
             <ForGed>
-              <h4>0</h4>
+              <h4>{supportAmount}</h4>
               <h4>GeD</h4>
             </ForGed>
             <ForPerCent>
