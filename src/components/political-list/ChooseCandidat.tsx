@@ -4,39 +4,39 @@ import arrow from "../../images/arrow.png";
 import Delete from "../../images/trash.png";
 import Select, { components, OptionProps } from "react-select";
 
-
 const ChooseCandidat = () => {
-    const Option = (props: any) => {
-        return (
-          <div>
-            <components.Option {...props}>
-              <img src="https://i.picsum.photos/id/153/24/24.jpg?hmac=HhBzaFkAtefIH3nCY7r2lHLaWodBZ57Jkq7-yR3Sk30" />
-              {props.value}
-            </components.Option>
-          </div>
-        );
-      };
-    const options = [
-        { value: "ანი ავაზნელი", label: "ანი ავაზნელი" }
-      ];
+  const Option = (props: any) => {
+    return (
+      <div>
+        <components.Option {...props}>
+          <img src="https://i.picsum.photos/id/153/24/24.jpg?hmac=HhBzaFkAtefIH3nCY7r2lHLaWodBZ57Jkq7-yR3Sk30" />
+          {props.value}
+        </components.Option>
+      </div>
+    );
+  };
+  const options = [
+    { value: "ანი ავაზნელი", label: "ანი ავაზნელი" },
+    { value: "ვალერიანკა ზანგური", label: "ვალერიანკა ზანგური" },
+  ];
   return (
     <ChooseDiv>
       <Choose>
         <h2>1</h2>
         <SelectD>
           <h3>აირჩიე კანდიდატი</h3>
-          <Select 
-          placeholder ="პოლიტიკოსის სახელი და გვარი"
-          options={options}
-          styles={{
-            option: (base) => ({
-              ...base,
-              border: `1px solid red`,
-              minWidth: '330',
-              height: '44',
-            })
-          }}
-          components={{ Option }}
+          <Select
+            placeholder="პოლიტიკოსის სახელი და გვარი"
+            options={options}
+            styles={{
+              option: (base) => ({
+                ...base,
+                border: `1px solid red`,
+                minWidth: "340",
+                height: "44",
+              }),
+            }}
+            components={{ Option }}
           />
         </SelectD>
       </Choose>
@@ -72,7 +72,6 @@ const ChooseDiv = styled.div`
   align-items: center;
   justify-content: space-between;
   border-top: 1px solid #eaeaeb;
-  border-bottom: 1px solid #eaeaeb;
   padding-top: 24px;
   padding-bottom: 24px;
 `;
@@ -80,6 +79,7 @@ const ChooseDiv = styled.div`
 const Choose = styled.div`
   display: flex;
   align-items: center;
+  gap: 10px;
   h1 {
     font-weight: 500;
     font-size: 12px;
@@ -107,7 +107,11 @@ const MoneyChanger = styled.div`
   }
 `;
 
-const SelectD = styled.div``;
+const SelectD = styled.div`
+  h3 {
+    margin-bottom: 6px;
+  }
+`;
 
 const IconsContainer = styled.div`
   margin-top: 5px;
@@ -185,6 +189,6 @@ const ForGed = styled.div`
 const ForPerCent = styled.div`
   display: flex;
   h3 {
-    margin-left: 10px;
+    transform: translateX(25px);
   }
 `;

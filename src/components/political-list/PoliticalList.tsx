@@ -11,14 +11,18 @@ interface ListProps {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
   showPoliticalList: boolean;
   input: string | number;
-  setInput: React.Dispatch<React.SetStateAction<string | number>>
+  setInput: React.Dispatch<React.SetStateAction<string | number>>;
+  showChosedCandidat: boolean;
+  setChosedCandidat: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const PoliticalList: React.FC<ListProps> = ({
   setModal,
   showPoliticalList,
   input,
-  setInput
+  setInput,
+  showChosedCandidat,
+  setChosedCandidat,
 }) => {
   return (
     <MainContainer>
@@ -38,18 +42,23 @@ const PoliticalList: React.FC<ListProps> = ({
               <img src={plus} alt="plus" />
             </button>
           ) : (
-            <SeparatedMoney setModal={setModal} input={input} setInput={setInput} />
+            <SeparatedMoney
+              setModal={setModal}
+              input={input}
+              setInput={setInput}
+            />
           )}
         </ButtonTextContainer>
+
+        {showChosedCandidat && <ChooseCandidat />}
         {!showPoliticalList && (
           <ButtonDiv>
-            <button>
+            <button onClick={() => setChosedCandidat(true)}>
               დაამატე პოლიტიკოსი
               <img src={plusIcon} alt="plus-img" />
             </button>
           </ButtonDiv>
         )}
-        <ChooseCandidat/>
       </MainDiv>
     </MainContainer>
   );
