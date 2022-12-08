@@ -10,12 +10,12 @@ import ChooseCandidat from "./ChooseCandidat";
 interface ListProps {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
   showPoliticalList: boolean;
-  input: string | number;
-  setInput: React.Dispatch<React.SetStateAction<string | number>>;
-  showChosedCandidat: boolean;
-  setChosedCandidat: React.Dispatch<React.SetStateAction<boolean>>;
-  supportAmount: React.Dispatch<React.SetStateAction<string | number>>;
-  setSupportAmount: React.Dispatch<React.SetStateAction<string | number>>;
+  input: number;
+  setInput: React.Dispatch<React.SetStateAction<number>>;
+  showChosenCandidat: boolean;
+  setChosenCandidat: React.Dispatch<React.SetStateAction<boolean>>;
+  money: number;
+  setMoney: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const PoliticalList: React.FC<ListProps> = ({
@@ -23,10 +23,10 @@ const PoliticalList: React.FC<ListProps> = ({
   showPoliticalList,
   input,
   setInput,
-  showChosedCandidat,
-  setChosedCandidat,
-  supportAmount,
-  setSupportAmount,
+  showChosenCandidat,
+  setChosenCandidat,
+  money,
+  setMoney,
 }) => {
   return (
     <MainContainer>
@@ -49,15 +49,16 @@ const PoliticalList: React.FC<ListProps> = ({
             <SeparatedMoney
               setModal={setModal}
               input={input}
+              money={money}
               setInput={setInput}
             />
           )}
         </ButtonTextContainer>
 
-        {showChosedCandidat && <ChooseCandidat supportAmount={supportAmount} setSupportAmount={setSupportAmount} />}
+        {showChosenCandidat && <ChooseCandidat />}
         {!showPoliticalList && (
           <ButtonDiv>
-            <button onClick={() => setChosedCandidat(true)}>
+            <button onClick={() => setChosenCandidat(true)}>
               დაამატე პოლიტიკოსი
               <img src={plusIcon} alt="plus-img" />
             </button>
