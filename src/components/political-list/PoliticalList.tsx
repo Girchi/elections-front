@@ -6,6 +6,7 @@ import Rating from "./Rating";
 import SeparatedMoney from "../political-list/SeparatedMoney";
 import plusIcon from "../../images/plusicon.png";
 import ChooseCandidat from "./ChooseCandidat";
+import DraftPublish from "./Draft&Publish";
 
 interface ListProps {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -62,6 +63,7 @@ const PoliticalList: React.FC<ListProps> = ({
               დაამატე პოლიტიკოსი
               <img src={plusIcon} alt="plus-img" />
             </button>
+            {/* <DraftPublish/> */}
           </ButtonDiv>
         )}
       </MainDiv>
