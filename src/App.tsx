@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Header from "./components/Header";
 import ModalPayment from "./components/ModalPayment";
 import PoliticalList from "./components/political-list/PoliticalList";
+
 import "./font/TBCContractica-Bold.ttf";
 function App() {
   const [modal, setModal] = useState(false);
