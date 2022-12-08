@@ -3,14 +3,12 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import styled from "styled-components";
 import Xicon from "../images/xIcon.svg";
 import Ged from "../images/GeD.png";
-import { setTextRange } from "typescript";
 
 export interface ModalProps {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
   setShowPoliticalList: React.Dispatch<React.SetStateAction<boolean>>;
   input: string | number;
   setInput: React.Dispatch<React.SetStateAction<string | number>>;
-
 }
 
 const ModalPayment: React.FC<ModalProps> = ({
@@ -22,10 +20,8 @@ const ModalPayment: React.FC<ModalProps> = ({
   // const [input, setInput] = useState<number | string>("");
   const [checkboxInput, setCheckboxInput] = useState<string | boolean>(true);
 
-
   const [balance, setBalance] = useState(1000000);
-  const [remaining, setRemaining] = useState<null | number>(null)
-
+  const [remaining, setRemaining] = useState<null | number>(null);
 
   const changeInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -170,6 +166,7 @@ const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 `;
 
 const Modal = styled.div`
