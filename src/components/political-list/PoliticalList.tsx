@@ -6,6 +6,7 @@ import Rating from "./Rating";
 import SeparatedMoney from "../political-list/SeparatedMoney";
 import plusIcon from "../../images/plusicon.png";
 import ChooseCandidat from "./ChooseCandidat";
+import DraftPublish from "./Draft&Publish";
 
 interface ListProps {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -57,10 +58,11 @@ const PoliticalList: React.FC<ListProps> = ({
         {showChosedCandidat && <ChooseCandidat supportAmount={supportAmount} setSupportAmount={setSupportAmount} />}
         {!showPoliticalList && (
           <ButtonDiv>
-            <button onClick={() => setChosedCandidat(true)}>
+            <ButtonD onClick={() => setChosedCandidat(true)}>
               დაამატე პოლიტიკოსი
               <img src={plusIcon} alt="plus-img" />
-            </button>
+            </ButtonD>
+            {/* <DraftPublish/> */}
           </ButtonDiv>
         )}
       </MainDiv>
@@ -136,15 +138,16 @@ const TextDiv = styled.div`
 const ButtonDiv = styled.div`
   border-top: 1px solid #e0e2e7;
   padding-top: 25px;
+  display: flex;
+`;
 
-  button {
-    width: 264px;
+const ButtonD =styled.button`
+  width: 264px;
     height: 48px;
     display: flex;
     gap: 10px;
     align-items: center;
     justify-content: space-evenly;
-    background: #f3f3f4;
     border-radius: 56px;
     border: none;
     cursor: pointer;
@@ -153,5 +156,5 @@ const ButtonDiv = styled.div`
     line-height: 24px;
     letter-spacing: 0.02em;
     color: #292d33;
-  }
-`;
+    background: #F3F3F4;
+`
