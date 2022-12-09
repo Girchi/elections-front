@@ -7,6 +7,7 @@ import SeparatedMoney from "../political-list/SeparatedMoney";
 import plusIcon from "../../images/plusicon.png";
 import ChooseCandidat from "./ChooseCandidat";
 import DraftPublish from "./Draft&Publish";
+import Candidate from "./Candidate";
 
 interface ListProps {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -55,7 +56,7 @@ const PoliticalList: React.FC<ListProps> = ({
             />
           )}
         </ButtonTextContainer>
-
+            {/* <Candidate/> */}
         {showChosenCandidat && <ChooseCandidat />}
         {!showPoliticalList && (
           <ButtonDiv>
