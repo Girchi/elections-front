@@ -90,9 +90,7 @@ const ChooseCandidat = () => {
         <h3>მხარდასაჭერი თანხა</h3>
         <MoneyChanger>
           <IconsContainer>
-            <ForGed>
-              <h4>0</h4>
-              <h4>GeD</h4>
+            <ForGed placeholder={0 +" GeD"}>
             </ForGed>
             <ForPerCent>
               <h3 style={{ display: "block", width: "100px" }}>პროცენტი</h3>
@@ -225,7 +223,7 @@ const CheckBox = styled.input`
   }
 `;
 
-const ForGed = styled.div`
+const ForGed = styled.input`
   display: flex;
   font-weight: 500;
   font-size: 14px;
@@ -233,6 +231,22 @@ const ForGed = styled.div`
   color: #292d33;
   gap: 5px;
   margin-left: 12px;
+  max-width: 100px;
+  border: none;
+  :focus {
+    outline: none;
+  }
+  /* Chrome, Safari, Edge, Opera */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  &[type="number"] {
+    -moz-appearance: textfield;
+  }
 `;
 const ForPerCent = styled.div`
   display: flex;
