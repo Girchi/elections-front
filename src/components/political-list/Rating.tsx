@@ -1,8 +1,11 @@
 import List from "../../images/Group.png";
 import RatingImage from "../../images/rating.png";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Rating = () => {
+  const routeHandler = () => {};
+
   return (
     <RatingContainer>
       <ListDiv>
@@ -11,7 +14,18 @@ const Rating = () => {
       </ListDiv>
       <RatingDiv>
         <img src={RatingImage} alt="" />
-        <h3>რეიტინგი</h3>
+        <Link
+          style={{
+            fontWeight: "500",
+            fontSize: "14px",
+            lineHeight: "24px",
+            color: "#6f7680",
+            textDecoration: "none",
+          }}
+          to="/ratinglist"
+        >
+          რეიტინგი
+        </Link>
       </RatingDiv>
     </RatingContainer>
   );
