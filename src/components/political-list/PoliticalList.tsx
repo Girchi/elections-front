@@ -18,6 +18,10 @@ interface ListProps {
   setChosenCandidat: React.Dispatch<React.SetStateAction<boolean>>;
   money: number;
   setMoney: React.Dispatch<React.SetStateAction<number>>;
+  setSupportMoney:(number:number)=> void;
+  supportMoney: number|null;
+  addCandidat: boolean;
+  setAddCandidat: (boolean:boolean)=> void;
 }
 
 const PoliticalList: React.FC<ListProps> = ({
@@ -29,6 +33,10 @@ const PoliticalList: React.FC<ListProps> = ({
   setChosenCandidat,
   money,
   setMoney,
+  setSupportMoney,
+  supportMoney,
+  addCandidat,
+  setAddCandidat
 }) => {
   return (
     <MainContainer>
@@ -56,8 +64,8 @@ const PoliticalList: React.FC<ListProps> = ({
             />
           )}
         </ButtonTextContainer>
-            {/* <Candidate/> */}
-        {showChosenCandidat && <ChooseCandidat />}
+            {addCandidat && <Candidate/>}
+        {showChosenCandidat && <ChooseCandidat setSupportMoney={setSupportMoney} supportMoney={supportMoney} addCandidat={addCandidat} setAddCandidat={setAddCandidat} />}
         {!showPoliticalList && (
           <ButtonDiv>
             <ButtonD onClick={() => setChosenCandidat(true)}>

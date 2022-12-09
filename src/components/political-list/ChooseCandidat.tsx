@@ -1,8 +1,31 @@
 import styled from "styled-components";
 import Delete from "../../images/trash.png";
 import Select from "react-select";
+import { ChangeEvent } from "react";
 
-const ChooseCandidat = () => {
+interface ListProps {
+  setSupportMoney: (number: number) => void;
+  supportMoney: number | null;
+  addCandidat: boolean;
+  setAddCandidat: (boolean: boolean) => void;
+}
+
+const ChooseCandidat: React.FC<ListProps> = ({
+  setSupportMoney,
+  supportMoney,
+  addCandidat,
+  setAddCandidat,
+}) => {
+  const supportMoneyHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setSupportMoney(+e.target.value);
+  };
+
+  const onchangeHandler = () => {
+    if (supportMoney) {
+      setAddCandidat(true);
+    }
+  };
+
   const options: any = [
     {
       value: "ანი ავაზნელი",
@@ -83,6 +106,7 @@ const ChooseCandidat = () => {
               }),
             }}
             components={{ ...options }}
+            onChange={onchangeHandler}
           />
         </SelectD>
       </Choose>
@@ -90,8 +114,11 @@ const ChooseCandidat = () => {
         <h3>მხარდასაჭერი თანხა</h3>
         <MoneyChanger>
           <IconsContainer>
-            <ForGed placeholder={0 +" GeD"}>
-            </ForGed>
+            <ForGed
+              value={supportMoney ? supportMoney : ""}
+              placeholder={0 + " GeD"}
+              onChange={supportMoneyHandler}
+            ></ForGed>
             <ForPerCent>
               <h3 style={{ display: "block", width: "100px" }}>პროცენტი</h3>
               <CheckboxContainer>

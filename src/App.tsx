@@ -12,6 +12,8 @@ function App() {
   const [money, setMoney] = useState(0);
   const [showChosenCandidat, setChosenCandidat] = useState(false);
   const [balance, setBalance] = useState(1000);
+  const [supportMoney, setSupportMoney] = useState<number|null>(null);
+  const [addCandidat, setAddCandidat] = useState <boolean> (false)
 
   return (
     <Main>
@@ -37,6 +39,10 @@ function App() {
         setChosenCandidat={setChosenCandidat}
         money={money}
         setMoney={setMoney}
+        supportMoney={supportMoney}
+        setSupportMoney={setSupportMoney}
+        addCandidat={addCandidat}
+        setAddCandidat={setAddCandidat}
       />
     </Main>
   );
