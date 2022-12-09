@@ -5,6 +5,7 @@ import ModalPayment from "./components/ModalPayment";
 import PoliticalList from "./components/political-list/PoliticalList";
 
 import "./font/TBCContractica-Bold.ttf";
+import MakePublic from "./publicpage/MakePublic";
 function App() {
   const [modal, setModal] = useState(false);
   const [showPoliticalList, setShowPoliticalList] = useState(true);
@@ -12,9 +13,10 @@ function App() {
   const [money, setMoney] = useState(0);
   const [showChosenCandidat, setChosenCandidat] = useState(false);
   const [balance, setBalance] = useState(1000);
-
+  const [showPublicPage, setShowPublicPage] = useState(false);
   return (
     <Main>
+      {showPublicPage && <MakePublic />}
       {modal && (
         <ModalPayment
           setModal={setModal}
