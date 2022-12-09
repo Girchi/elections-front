@@ -33,6 +33,7 @@ const ChooseCandidat: React.FC<ListProps> = ({
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <img
             src="https://www.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg"
+            alt="img1"
             style={{ height: "30px", width: "30px", borderRadius: "50%" }}
           />
           ანი ავაზნელი
@@ -45,6 +46,7 @@ const ChooseCandidat: React.FC<ListProps> = ({
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <img
             src="https://letsenhance.io/static/334225cab5be263aad8e3894809594ce/75c5a/MainAfter.jpg"
+            alt="img2"
             style={{ height: "30px", width: "30px", borderRadius: "50%" }}
           />
           ვალერია ზანგური
@@ -57,6 +59,7 @@ const ChooseCandidat: React.FC<ListProps> = ({
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <img
             src="https://us.123rf.com/450wm/alexvolot/alexvolot2004/alexvolot200400046/alexvolot200400046.jpg?ver=6"
+            alt="img3"
             style={{ height: "30px", width: "30px", borderRadius: "50%" }}
           />
           დიმა ჭილაია
