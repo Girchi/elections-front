@@ -3,9 +3,11 @@ import styled from "styled-components";
 import Header from "./components/Header";
 import ModalPayment from "./components/ModalPayment";
 import PoliticalList from "./components/political-list/PoliticalList";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 import "./font/TBCContractica-Bold.ttf";
 import MakePublic from "./publicpage/MakePublic";
+import RatingList from "./pages/RatingList";
 function App() {
   const [modal, setModal] = useState(false);
   const [showPoliticalList, setShowPoliticalList] = useState(true);
@@ -15,8 +17,8 @@ function App() {
   const [balance, setBalance] = useState(1000);
 
   const [showPublicPage, setShowPublicPage] = useState(false);
-  const [supportMoney, setSupportMoney] = useState<number|null>(null);
-  const [addCandidat, setAddCandidat] = useState <boolean> (false)
+  const [supportMoney, setSupportMoney] = useState<number | null>(null);
+  const [addCandidat, setAddCandidat] = useState<boolean>(false)
   return (
     <Main>
       {showPublicPage && <MakePublic />}
@@ -33,20 +35,25 @@ function App() {
         />
       )}
       <Header />
-      <PoliticalList
-        setModal={setModal}
-        showPoliticalList={showPoliticalList}
-        input={input}
-        setInput={setInput}
-        showChosenCandidat={showChosenCandidat}
-        setChosenCandidat={setChosenCandidat}
-        money={money}
-        setMoney={setMoney}
-        supportMoney={supportMoney}
-        setSupportMoney={setSupportMoney}
-        addCandidat={addCandidat}
-        setAddCandidat={setAddCandidat}
-      />
+
+      <Routes>
+        <Route path="/ratingList" element={<RatingList />} />
+        <Route path="/" element={<PoliticalList
+          setModal={setModal}
+          showPoliticalList={showPoliticalList}
+          input={input}
+          setInput={setInput}
+          showChosenCandidat={showChosenCandidat}
+          setChosenCandidat={setChosenCandidat}
+          money={money}
+          setMoney={setMoney}
+          supportMoney={supportMoney}
+          setSupportMoney={setSupportMoney}
+          addCandidat={addCandidat}
+          setAddCandidat={setAddCandidat}
+        />} />
+      </Routes>
+
     </Main>
   );
 }
