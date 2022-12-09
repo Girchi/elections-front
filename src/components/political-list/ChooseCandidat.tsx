@@ -1,25 +1,45 @@
-import React from "react";
 import styled from "styled-components";
 import Delete from "../../images/trash.png";
-import Select, { components, OptionProps } from "react-select";
+import Select from "react-select";
 
 const ChooseCandidat = () => {
-  const Option = (props: any) => {
-    return (
-      <div>
-        <components.Option {...props}>
+  const options: any = [
+    {
+      value: "ანი ავაზნელი",
+      label: (
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <img
-            style={{ borderRadius: "50%" }}
-            src="https://i.picsum.photos/id/153/24/24.jpg?hmac=HhBzaFkAtefIH3nCY7r2lHLaWodBZ57Jkq7-yR3Sk30"
+            src="https://www.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg"
+            style={{ height: "30px", width: "30px", borderRadius: "50%" }}
           />
-          {props.value}
-        </components.Option>
-      </div>
-    );
-  };
-  const options = [
-    { value: "ანი ავაზნელი", label: "ანი ავაზნელი" },
-    { value: "ვალერიანკა ზანგური", label: "ვალერიანკა ზანგური" },
+          ანი ავაზნელი
+        </div>
+      ),
+    },
+    {
+      value: "ვალერია ზანგური",
+      label: (
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <img
+            src="https://letsenhance.io/static/334225cab5be263aad8e3894809594ce/75c5a/MainAfter.jpg"
+            style={{ height: "30px", width: "30px", borderRadius: "50%" }}
+          />
+          ვალერია ზანგური
+        </div>
+      ),
+    },
+    {
+      value: "დიმა ჭილაია",
+      label: (
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <img
+            src="https://us.123rf.com/450wm/alexvolot/alexvolot2004/alexvolot200400046/alexvolot200400046.jpg?ver=6"
+            style={{ height: "30px", width: "30px", borderRadius: "50%" }}
+          />
+          დიმა ჭილაია
+        </div>
+      ),
+    },
   ];
   return (
     <ChooseDiv>
@@ -31,18 +51,38 @@ const ChooseCandidat = () => {
             placeholder="პოლიტიკოსის სახელი და გვარი"
             options={options}
             styles={{
-              option: (base) => ({
+              option: (base, state) => ({
                 ...base,
-                border: `none`,
-                minWidth: "340px",
-                minHeight: "44px",
+                "*": {
+                  boxShadow: "none !important",
+                },
+                minWidth: "200px",
                 display: "flex",
                 columnGap: "15px",
                 alignItems: "center",
-                outline: "none",
+                border: 0,
+                backgroundColor: "#FFFFFF",
+                color: "black",
+                fontSize: "15px",
+                lineHeight: "24px",
+                // This line disable the blue border
+                cursor: "pointer",
+                "&:hover": {
+                  backgroundColor: "#F3F3F4",
+                },
+              }),
+              control: (base, state) => ({
+                ...base,
+                border: "1px solid #E0E2E7",
+                boxShadow: "none",
+                cursor: "pointer",
+                fontSize: "15px",
+                "&:hover": {
+                  border: "1px solid #E0E2E7",
+                },
               }),
             }}
-            components={{ Option }}
+            components={{ ...options }}
           />
         </SelectD>
       </Choose>
@@ -114,6 +154,8 @@ const MoneyChanger = styled.div`
 `;
 
 const SelectD = styled.div`
+  width: 340px;
+
   h3 {
     margin-bottom: 6px;
   }
