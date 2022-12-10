@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Delete from "../../images/trash.png";
 import Select from "react-select";
-import { ChangeEvent, ReactElement, useState } from "react";
+import { ChangeEvent } from "react";
 
 interface ListProps {
   setSupportMoney: (number: number) => void;
@@ -61,7 +61,7 @@ const ChooseCandidat: React.FC<ListProps> = ({
                     "*": {
                       boxShadow: "none !important",
                     },
-                    minWidth: "200px",
+                    minWidth: "150px",
                     display: "flex",
                     columnGap: "15px",
                     alignItems: "center",
@@ -163,7 +163,7 @@ const MoneyChanger = styled.div`
 `;
 
 const SelectD = styled.div`
-  width: 340px;
+  width: 320px;
 
   h3 {
     margin-bottom: 6px;

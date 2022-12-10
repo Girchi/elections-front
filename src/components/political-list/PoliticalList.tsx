@@ -32,7 +32,6 @@ const PoliticalList: React.FC<ListProps> = ({
   showChosenCandidat,
   setChosenCandidat,
   money,
-  setMoney,
   setSupportMoney,
   supportMoney,
   addCandidat,
