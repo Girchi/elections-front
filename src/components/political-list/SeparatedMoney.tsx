@@ -9,20 +9,10 @@ interface ListProps {
   money: number;
 }
 
-const SeparatedMoney: React.FC<ListProps> = ({
-  input,
-  setModal,
-  setInput,
-  money,
-}) => {
+const SeparatedMoney: React.FC<ListProps> = ({ setModal, money }) => {
   const clickHandler = () => {
     setModal(true);
   };
-  // console.log("input", input);
-  // console.log("money", money);
-
-  // const anotherMoney = input + money;
-  // console.log("fullMoney", anotherMoney);
 
   return (
     <MainDiv>

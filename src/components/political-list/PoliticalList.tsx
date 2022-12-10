@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import plus from "../../images/plus.png";
 import Rating from "./Rating";
@@ -18,10 +18,10 @@ interface ListProps {
   setChosenCandidat: React.Dispatch<React.SetStateAction<boolean>>;
   money: number;
   setMoney: React.Dispatch<React.SetStateAction<number>>;
-  setSupportMoney:(number:number)=> void;
-  supportMoney: number|null;
+  setSupportMoney: (number: number) => void;
+  supportMoney: number | null;
   addCandidat: boolean;
-  setAddCandidat: (boolean:boolean)=> void;
+  setAddCandidat: (boolean: boolean) => void;
 }
 
 const PoliticalList: React.FC<ListProps> = ({
@@ -36,8 +36,52 @@ const PoliticalList: React.FC<ListProps> = ({
   setSupportMoney,
   supportMoney,
   addCandidat,
-  setAddCandidat
+  setAddCandidat,
 }) => {
+  const [userChoice, setUserChoice] = useState("");
+
+  const candidatesArray = [
+    {
+      value: "ანი ავაზნელი",
+      label: (
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <img
+            src="https://www.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg"
+            alt="img1"
+            style={{ height: "30px", width: "30px", borderRadius: "50%" }}
+          />
+          ანი ავაზნელი
+        </div>
+      ),
+    },
+    {
+      value: "ვალერია ზანგური",
+      label: (
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <img
+            src="https://letsenhance.io/static/334225cab5be263aad8e3894809594ce/75c5a/MainAfter.jpg"
+            alt="img2"
+            style={{ height: "30px", width: "30px", borderRadius: "50%" }}
+          />
+          ვალერია ზანგური
+        </div>
+      ),
+    },
+    {
+      value: "დიმა ჭილაია",
+      label: (
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <img
+            src="https://us.123rf.com/450wm/alexvolot/alexvolot2004/alexvolot200400046/alexvolot200400046.jpg?ver=6"
+            alt="img3"
+            style={{ height: "30px", width: "30px", borderRadius: "50%" }}
+          />
+          დიმა ჭილაია
+        </div>
+      ),
+    },
+  ];
+  console.log(candidatesArray);
   return (
     <MainContainer>
       <Rating />
@@ -64,8 +108,18 @@ const PoliticalList: React.FC<ListProps> = ({
             />
           )}
         </ButtonTextContainer>
-            {addCandidat && <Candidate/>}
-        {showChosenCandidat && <ChooseCandidat setSupportMoney={setSupportMoney} supportMoney={supportMoney} addCandidat={addCandidat} setAddCandidat={setAddCandidat} />}
+        {addCandidat && <Candidate userChoice={userChoice} />}
+        {showChosenCandidat && (
+          <ChooseCandidat
+            setSupportMoney={setSupportMoney}
+            supportMoney={supportMoney}
+            addCandidat={addCandidat}
+            setAddCandidat={setAddCandidat}
+            candidatesArray={candidatesArray}
+            userChoice={userChoice}
+            setUserChoice={setUserChoice}
+          />
+        )}
         {!showPoliticalList && (
           <ButtonDiv>
             <ButtonD onClick={() => setChosenCandidat(true)}>

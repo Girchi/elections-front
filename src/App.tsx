@@ -18,7 +18,7 @@ function App() {
 
   const [showPublicPage, setShowPublicPage] = useState(false);
   const [supportMoney, setSupportMoney] = useState<number | null>(null);
-  const [addCandidat, setAddCandidat] = useState<boolean>(false)
+  const [addCandidat, setAddCandidat] = useState<boolean>(false);
   return (
     <Main>
       {showPublicPage && <MakePublic />}
@@ -38,22 +38,26 @@ function App() {
 
       <Routes>
         <Route path="/ratingList" element={<RatingList />} />
-        <Route path="/" element={<PoliticalList
-          setModal={setModal}
-          showPoliticalList={showPoliticalList}
-          input={input}
-          setInput={setInput}
-          showChosenCandidat={showChosenCandidat}
-          setChosenCandidat={setChosenCandidat}
-          money={money}
-          setMoney={setMoney}
-          supportMoney={supportMoney}
-          setSupportMoney={setSupportMoney}
-          addCandidat={addCandidat}
-          setAddCandidat={setAddCandidat}
-        />} />
+        <Route
+          path="/"
+          element={
+            <PoliticalList
+              setModal={setModal}
+              showPoliticalList={showPoliticalList}
+              input={input}
+              setInput={setInput}
+              showChosenCandidat={showChosenCandidat}
+              setChosenCandidat={setChosenCandidat}
+              money={money}
+              setMoney={setMoney}
+              supportMoney={supportMoney}
+              setSupportMoney={setSupportMoney}
+              addCandidat={addCandidat}
+              setAddCandidat={setAddCandidat}
+            />
+          }
+        />
       </Routes>
-
     </Main>
   );
 }

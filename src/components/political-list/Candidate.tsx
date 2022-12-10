@@ -1,20 +1,20 @@
-import React from "react";
 import styled from "styled-components";
 
 import Delete from "../../images/trash.png";
 
-const Candidate = () => {
+interface Candidate {
+  userChoice: string;
+}
+const Candidate: React.FC<Candidate> = ({ userChoice }) => {
+  // console.log(candidatesArray);
   return (
     <MainCandidate>
       <Politican>
         <h4>1</h4>
         <ImageD>
-          <img
-            src={`https://avatars.githubusercontent.com/u/104849781?s=400&u=3dbc36fa248fd93f9274be55591c2927b6d143e2&v=4`}
-            alt=""
-          />
+          <img src="" alt="" />
           <Info>
-            <h3>ანი ავაზნელი</h3>
+            <h3>{userChoice}</h3>
             <h5>952 მხარდამჭერი</h5>
           </Info>
         </ImageD>
