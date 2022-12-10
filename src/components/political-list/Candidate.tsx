@@ -3,14 +3,18 @@ import styled from "styled-components";
 import Delete from "../../images/trash.png";
 
 interface Candidate {
-  userChoice: any;
+  userChoice: {
+    name: string;
+    avatar: string;
+  };
+  index: number;
 }
-const Candidate: React.FC<Candidate> = ({ userChoice }) => {
+const Candidate: React.FC<Candidate> = ({ userChoice, index }) => {
   // console.log(candidatesArray);
   return (
     <MainCandidate>
       <Politican>
-        <h4>1</h4>
+        <h4>{index + 1}</h4>
         <ImageD>
           <img src={userChoice.avatar} alt="" />
           <Info>

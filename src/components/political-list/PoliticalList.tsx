@@ -24,7 +24,6 @@ interface ListProps {
   setAddCandidat: (boolean: boolean) => void;
 }
 
-
 const PoliticalList: React.FC<ListProps> = ({
   setModal,
   showPoliticalList,
@@ -42,12 +41,20 @@ const PoliticalList: React.FC<ListProps> = ({
   const [userChoice, setUserChoice] = useState("");
 
   const [politicansList, setPoliticansList] = useState([]);
+  const [showComponent, setShowComponent] = useState(true);
 
+  const showCandidats = () => {
+    setChosenCandidat(true);
+    setShowComponent(true);
+  };
   const candidatesArray = [
     {
       value: "ანი ავაზნელი",
       label: (
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <div
+          style={{ display: "flex", alignItems: "center", gap: "10px" }}
+          onClick={() => setShowComponent(false)}
+        >
           <img
             src="https://www.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg"
             alt="img1"
@@ -60,7 +67,10 @@ const PoliticalList: React.FC<ListProps> = ({
     {
       value: "ვალერია ზანგური",
       label: (
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <div
+          style={{ display: "flex", alignItems: "center", gap: "10px" }}
+          onClick={() => setShowComponent(false)}
+        >
           <img
             src="https://letsenhance.io/static/334225cab5be263aad8e3894809594ce/75c5a/MainAfter.jpg"
             alt="img2"
@@ -73,7 +83,10 @@ const PoliticalList: React.FC<ListProps> = ({
     {
       value: "დიმა ჭილაია",
       label: (
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <div
+          style={{ display: "flex", alignItems: "center", gap: "10px" }}
+          onClick={() => setShowComponent(false)}
+        >
           <img
             src="https://us.123rf.com/450wm/alexvolot/alexvolot2004/alexvolot200400046/alexvolot200400046.jpg?ver=6"
             alt="img3"
@@ -84,7 +97,6 @@ const PoliticalList: React.FC<ListProps> = ({
       ),
     },
   ];
-  console.log(candidatesArray);
   return (
     <MainContainer>
       <Rating />
@@ -111,7 +123,9 @@ const PoliticalList: React.FC<ListProps> = ({
             />
           )}
         </ButtonTextContainer>
-        {politicansList.map((person, index)=> <Candidate key={index} userChoice={person} />)}
+        {politicansList.map((person, index) => (
+          <Candidate key={index} userChoice={person} index={index} />
+        ))}
         {showChosenCandidat && (
           <ChooseCandidat
             setSupportMoney={setSupportMoney}
@@ -122,11 +136,12 @@ const PoliticalList: React.FC<ListProps> = ({
             userChoice={userChoice}
             setUserChoice={setUserChoice}
             setPoliticansList={setPoliticansList}
+            showComponent={showComponent}
           />
         )}
         {!showPoliticalList && (
           <ButtonDiv>
-            <ButtonD onClick={() => setChosenCandidat(true)}>
+            <ButtonD onClick={showCandidats}>
               დაამატე პოლიტიკოსი
               <img src={plusIcon} alt="plus-img" />
             </ButtonD>

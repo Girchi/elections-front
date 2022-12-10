@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Delete from "../../images/trash.png";
 import Select from "react-select";
-import { ChangeEvent } from "react";
+import { ChangeEvent, ReactElement, useState } from "react";
 
 interface ListProps {
   setSupportMoney: (number: number) => void;
@@ -15,14 +15,14 @@ interface ListProps {
     value: string;
     label: JSX.Element;
   }[];
+  showComponent: boolean;
 }
 
 const ChooseCandidat: React.FC<ListProps> = ({
   setSupportMoney,
   supportMoney,
-  setAddCandidat,
+  showComponent,
   candidatesArray,
-  setUserChoice,
   setPoliticansList,
 }) => {
   const supportMoneyHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -30,91 +30,93 @@ const ChooseCandidat: React.FC<ListProps> = ({
   };
 
   const onchangeHandler = (e: any) => {
-    console.log(e)
+    console.log(e);
     // setAddCandidat(true);
     // setUserChoice(e.value);
     const newPolitican = {
       name: e.value,
       avatar: e.label.props.children[0].props.src,
-    }
-    setPoliticansList((state: any)=> [...state,newPolitican])
+    };
+    setPoliticansList((state: any) => [...state, newPolitican]);
   };
 
   const options: any = candidatesArray.map((candidate: any) => ({
     value: candidate.value,
     label: candidate.label,
-    // image: candidate.image,
   }));
-  console.log(candidatesArray);
   return (
-    <ChooseDiv>
-      <Choose>
-        <h2>1</h2>
-        <SelectD>
-          <h3>აირჩიე კანდიდატი</h3>
-          <Select
-            placeholder="პოლიტიკოსის სახელი და გვარი"
-            options={options}
-            styles={{
-              option: (base, state) => ({
-                ...base,
-                "*": {
-                  boxShadow: "none !important",
-                },
-                minWidth: "200px",
-                display: "flex",
-                columnGap: "15px",
-                alignItems: "center",
-                border: 0,
-                backgroundColor: "#FFFFFF",
-                color: "black",
-                fontSize: "15px",
-                lineHeight: "24px",
-                // This line disable the blue border
-                cursor: "pointer",
-                "&:hover": {
-                  backgroundColor: "#F3F3F4",
-                },
-              }),
-              control: (base, state) => ({
-                ...base,
-                border: "1px solid #E0E2E7",
-                boxShadow: "none",
-                cursor: "pointer",
-                fontSize: "15px",
-                "&:hover": {
-                  border: "1px solid #E0E2E7",
-                },
-              }),
-            }}
-            components={{ ...options }}
-            onChange={onchangeHandler}
-          />
-        </SelectD>
-      </Choose>
-      <Money>
-        <h3>მხარდასაჭერი თანხა</h3>
-        <MoneyChanger>
-          <IconsContainer>
-            <ForGed
-              value={supportMoney ? supportMoney : ""}
-              placeholder={0 + " GeD"}
-              onChange={supportMoneyHandler}
-            ></ForGed>
-            <ForPerCent>
-              <h3 style={{ display: "block", width: "100px" }}>პროცენტი</h3>
-              <CheckboxContainer>
-                <CheckBox id="checkbox" type="checkbox" />
-                <CheckBoxLabel htmlFor="checkbox" />
-              </CheckboxContainer>
-            </ForPerCent>
-          </IconsContainer>
-          <button>
-            <img src={Delete} alt="" />
-          </button>
-        </MoneyChanger>
-      </Money>
-    </ChooseDiv>
+    <>
+      {showComponent && (
+        <ChooseDiv>
+          <Choose>
+            <h2>1</h2>
+            <SelectD>
+              <h3>აირჩიე კანდიდატი</h3>
+              <Select
+                placeholder="პოლიტიკოსის სახელი და გვარი"
+                options={options}
+                styles={{
+                  option: (base, state) => ({
+                    ...base,
+                    "*": {
+                      boxShadow: "none !important",
+                    },
+                    minWidth: "200px",
+                    display: "flex",
+                    columnGap: "15px",
+                    alignItems: "center",
+                    border: 0,
+                    backgroundColor: "#FFFFFF",
+                    color: "black",
+                    fontSize: "15px",
+                    lineHeight: "24px",
+                    // This line disable the blue border
+                    cursor: "pointer",
+                    "&:hover": {
+                      backgroundColor: "#F3F3F4",
+                    },
+                  }),
+                  control: (base, state) => ({
+                    ...base,
+                    border: "1px solid #E0E2E7",
+                    boxShadow: "none",
+                    cursor: "pointer",
+                    fontSize: "15px",
+                    "&:hover": {
+                      border: "1px solid #E0E2E7",
+                    },
+                  }),
+                }}
+                components={{ ...options }}
+                onChange={onchangeHandler}
+              />
+            </SelectD>
+          </Choose>
+          <Money>
+            <h3>მხარდასაჭერი თანხა</h3>
+            <MoneyChanger>
+              <IconsContainer>
+                <ForGed
+                  value={supportMoney ? supportMoney : ""}
+                  placeholder={0 + " GeD"}
+                  onChange={supportMoneyHandler}
+                ></ForGed>
+                <ForPerCent>
+                  <h3 style={{ display: "block", width: "100px" }}>პროცენტი</h3>
+                  <CheckboxContainer>
+                    <CheckBox id="checkbox" type="checkbox" />
+                    <CheckBoxLabel htmlFor="checkbox" />
+                  </CheckboxContainer>
+                </ForPerCent>
+              </IconsContainer>
+              <button>
+                <img src={Delete} alt="" />
+              </button>
+            </MoneyChanger>
+          </Money>
+        </ChooseDiv>
+      )}
+    </>
   );
 };
 
