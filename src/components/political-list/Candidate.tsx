@@ -7,10 +7,9 @@ interface Candidate {
     name: string;
     avatar: string;
   };
-  index: number;
+  index: any;
 }
 const Candidate: React.FC<Candidate> = ({ userChoice, index }) => {
-  // console.log(candidatesArray);
   return (
     <MainCandidate>
       <Politican>
@@ -31,8 +30,8 @@ const Candidate: React.FC<Candidate> = ({ userChoice, index }) => {
             <ForPerCent>
               <h3 style={{ display: "block", width: "100px" }}>პროცენტი</h3>
               <CheckboxContainer>
-                <CheckBox id="checkbox" type="checkbox" />
-                <CheckBoxLabel htmlFor="checkbox" />
+                <CheckBox id={index} type="checkbox" />
+                <CheckBoxLabel htmlFor={index} />
               </CheckboxContainer>
             </ForPerCent>
           </IconsContainer>
