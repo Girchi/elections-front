@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Delete from "../../images/trash.png";
 
 interface Candidate {
-  userChoice: string;
+  userChoice: any;
 }
 const Candidate: React.FC<Candidate> = ({ userChoice }) => {
   // console.log(candidatesArray);
@@ -12,9 +12,9 @@ const Candidate: React.FC<Candidate> = ({ userChoice }) => {
       <Politican>
         <h4>1</h4>
         <ImageD>
-          <img src="" alt="" />
+          <img src={userChoice.avatar} alt="" />
           <Info>
-            <h3>{userChoice}</h3>
+            <h3>{userChoice.name}</h3>
             <h5>952 მხარდამჭერი</h5>
           </Info>
         </ImageD>

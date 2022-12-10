@@ -9,6 +9,7 @@ interface ListProps {
   addCandidat: boolean;
   setAddCandidat: (boolean: boolean) => void;
   userChoice: string;
+  setPoliticansList: (arrey: any) => void;
   setUserChoice: React.Dispatch<React.SetStateAction<string>>;
   candidatesArray: {
     value: string;
@@ -22,14 +23,21 @@ const ChooseCandidat: React.FC<ListProps> = ({
   setAddCandidat,
   candidatesArray,
   setUserChoice,
+  setPoliticansList,
 }) => {
   const supportMoneyHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setSupportMoney(+e.target.value);
   };
 
   const onchangeHandler = (e: any) => {
-    setAddCandidat(true);
-    setUserChoice(e.value);
+    console.log(e)
+    // setAddCandidat(true);
+    // setUserChoice(e.value);
+    const newPolitican = {
+      name: e.value,
+      avatar: e.label.props.children[0].props.src,
+    }
+    setPoliticansList((state: any)=> [...state,newPolitican])
   };
 
   const options: any = candidatesArray.map((candidate: any) => ({

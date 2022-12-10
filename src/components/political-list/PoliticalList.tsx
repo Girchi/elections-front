@@ -24,6 +24,7 @@ interface ListProps {
   setAddCandidat: (boolean: boolean) => void;
 }
 
+
 const PoliticalList: React.FC<ListProps> = ({
   setModal,
   showPoliticalList,
@@ -39,6 +40,8 @@ const PoliticalList: React.FC<ListProps> = ({
   setAddCandidat,
 }) => {
   const [userChoice, setUserChoice] = useState("");
+
+  const [politicansList, setPoliticansList] = useState([]);
 
   const candidatesArray = [
     {
@@ -108,7 +111,7 @@ const PoliticalList: React.FC<ListProps> = ({
             />
           )}
         </ButtonTextContainer>
-        {addCandidat && <Candidate userChoice={userChoice} />}
+        {politicansList.map((person, index)=> <Candidate key={index} userChoice={person} />)}
         {showChosenCandidat && (
           <ChooseCandidat
             setSupportMoney={setSupportMoney}
@@ -118,6 +121,7 @@ const PoliticalList: React.FC<ListProps> = ({
             candidatesArray={candidatesArray}
             userChoice={userChoice}
             setUserChoice={setUserChoice}
+            setPoliticansList={setPoliticansList}
           />
         )}
         {!showPoliticalList && (
