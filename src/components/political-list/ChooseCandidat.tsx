@@ -1,14 +1,12 @@
 import styled from "styled-components";
 import Delete from "../../images/trash.png";
 import Select from "react-select";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 
 interface ListProps {
   setSupportMoney: (number: number) => void;
   supportMoney: number | null;
-  addCandidat: boolean;
   setAddCandidat: (boolean: boolean) => void;
-  userChoice: string;
   setPoliticansList: (array: any) => void;
   setUserChoice: React.Dispatch<React.SetStateAction<string>>;
   candidatesArray: {
@@ -30,6 +28,7 @@ const ChooseCandidat: React.FC<ListProps> = ({
   showComponent,
   candidatesArray,
   setPoliticansList,
+  setShowComponent,
 }) => {
   const supportMoneyHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setSupportMoney(+e.target.value);
@@ -118,7 +117,11 @@ const ChooseCandidat: React.FC<ListProps> = ({
                 </ForPerCent>
               </IconsContainer>
               <button>
-                <img src={Delete} alt="delete" />
+                <img
+                  src={Delete}
+                  alt="delete"
+                  onClick={() => setShowComponent(false)}
+                />
               </button>
             </MoneyChanger>
           </Money>
