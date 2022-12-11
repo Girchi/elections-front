@@ -8,6 +8,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import "./font/TBCContractica-Bold.ttf";
 import MakePublic from "./publicpage/MakePublic";
 import RatingList from "./pages/RatingList";
+
 function App() {
   const [modal, setModal] = useState(false);
   const [showPoliticalList, setShowPoliticalList] = useState(true);
@@ -19,6 +20,7 @@ function App() {
   const [showPublicPage, setShowPublicPage] = useState(false);
   const [supportMoney, setSupportMoney] = useState<number | null>(null);
   const [addCandidat, setAddCandidat] = useState<boolean>(false);
+
   return (
     <Main>
       {showPublicPage && <MakePublic />}

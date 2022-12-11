@@ -9,13 +9,14 @@ interface ListProps {
   addCandidat: boolean;
   setAddCandidat: (boolean: boolean) => void;
   userChoice: string;
-  setPoliticansList: (arrey: any) => void;
+  setPoliticansList: (array: any) => void;
   setUserChoice: React.Dispatch<React.SetStateAction<string>>;
   candidatesArray: {
     value: string;
     label: JSX.Element;
   }[];
   showComponent: boolean;
+  setShowComponent: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ChooseCandidat: React.FC<ListProps> = ({
@@ -24,23 +25,21 @@ const ChooseCandidat: React.FC<ListProps> = ({
   showComponent,
   candidatesArray,
   setPoliticansList,
+  setShowComponent,
 }) => {
   const supportMoneyHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setSupportMoney(+e.target.value);
   };
 
   const onchangeHandler = (e: any) => {
-    console.log(e);
-    // setAddCandidat(true);
-    // setUserChoice(e.value);
     const newPolitican = {
+      id: Math.random(),
       name: e.value,
       avatar: e.label.props.children[0].props.src,
     };
-    setPoliticansList((state: any) => [...state, newPolitican]);
+    setPoliticansList((state: []) => [...state, newPolitican]);
   };
-
-  const options: any = candidatesArray.map((candidate: any) => ({
+  const options: any = candidatesArray.map((candidate) => ({
     value: candidate.value,
     label: candidate.label,
   }));
@@ -110,7 +109,7 @@ const ChooseCandidat: React.FC<ListProps> = ({
                 </ForPerCent>
               </IconsContainer>
               <button>
-                <img src={Delete} alt="" />
+                <img src={Delete} alt="delete" />
               </button>
             </MoneyChanger>
           </Money>
@@ -163,8 +162,6 @@ const MoneyChanger = styled.div`
 `;
 
 const SelectD = styled.div`
-  width: 320px;
-
   h3 {
     margin-bottom: 6px;
   }
