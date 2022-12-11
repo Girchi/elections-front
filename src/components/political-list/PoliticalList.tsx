@@ -149,10 +149,8 @@ const PoliticalList: React.FC<ListProps> = ({
           <ChooseCandidat
             setSupportMoney={setSupportMoney}
             supportMoney={supportMoney}
-            addCandidat={addCandidat}
             setAddCandidat={setAddCandidat}
             candidatesArray={candidatesArray}
-            userChoice={userChoice}
             setUserChoice={setUserChoice}
             setPoliticansList={setPoliticansList}
             showComponent={showComponent}
