@@ -19,25 +19,34 @@ interface ListProps {
   setShowComponent: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+type newPolitican = {
+  id: number;
+  name: string;
+  avatar: string;
+};
 const ChooseCandidat: React.FC<ListProps> = ({
   setSupportMoney,
   supportMoney,
   showComponent,
   candidatesArray,
   setPoliticansList,
-  setShowComponent,
 }) => {
   const supportMoneyHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setSupportMoney(+e.target.value);
   };
 
   const onchangeHandler = (e: any) => {
-    const newPolitican = {
+    const newPolitican: newPolitican = {
       id: Math.random(),
       name: e.value,
       avatar: e.label.props.children[0].props.src,
     };
-    setPoliticansList((state: []) => [...state, newPolitican]);
+    setPoliticansList(
+      (state: { id: string; name: string; avatar: string }[]) => [
+        ...state,
+        newPolitican,
+      ]
+    );
   };
   const options: any = candidatesArray.map((candidate) => ({
     value: candidate.value,

@@ -6,9 +6,10 @@ interface Candidate {
   userChoice: {
     name: string;
     avatar: string;
+    id: string;
   };
-  index: any;
-  setPoliticansList: (array: any) => void;
+  index: number;
+  setPoliticansList: React.Dispatch<React.SetStateAction<never[]>>;
 }
 
 const Candidate: React.FC<Candidate> = ({
@@ -16,11 +17,14 @@ const Candidate: React.FC<Candidate> = ({
   index,
   setPoliticansList,
 }) => {
-  const deleteHandler = (ids: number) => {
-    setPoliticansList((prev: []) => {
-      return prev.filter((item: number, id: number) => id !== ids);
+  const deleteHandler = (ids: string | number) => {
+    setPoliticansList((prev) => {
+      return prev.filter(
+        (item: { id: number | string }, id) => item.id !== ids
+      );
     });
   };
+  const { id } = userChoice;
   return (
     <MainCandidate>
       <Politican>
@@ -41,12 +45,12 @@ const Candidate: React.FC<Candidate> = ({
             <ForPerCent>
               <h3 style={{ display: "block", width: "100px" }}>პროცენტი</h3>
               <CheckboxContainer>
-                <CheckBox id={index} type="checkbox" />
-                <CheckBoxLabel htmlFor={index} />
+                <CheckBox id={id} type="checkbox" />
+                <CheckBoxLabel htmlFor={id} />
               </CheckboxContainer>
             </ForPerCent>
           </IconsContainer>
-          <button onClick={() => deleteHandler(index)}>
+          <button onClick={() => deleteHandler(id)}>
             <img src={Delete} alt="Delete" />
           </button>
         </MoneyChanger>
