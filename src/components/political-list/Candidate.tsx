@@ -8,8 +8,19 @@ interface Candidate {
     avatar: string;
   };
   index: any;
+  setPoliticansList: (array: any) => void;
 }
-const Candidate: React.FC<Candidate> = ({ userChoice, index }) => {
+
+const Candidate: React.FC<Candidate> = ({
+  userChoice,
+  index,
+  setPoliticansList,
+}) => {
+  const deleteHandler = (ids: number) => {
+    setPoliticansList((prev: []) => {
+      return prev.filter((item: number, id: number) => id !== ids);
+    });
+  };
   return (
     <MainCandidate>
       <Politican>
@@ -35,7 +46,7 @@ const Candidate: React.FC<Candidate> = ({ userChoice, index }) => {
               </CheckboxContainer>
             </ForPerCent>
           </IconsContainer>
-          <button>
+          <button onClick={() => deleteHandler(index)}>
             <img src={Delete} alt="Delete" />
           </button>
         </MoneyChanger>

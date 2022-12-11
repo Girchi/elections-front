@@ -51,7 +51,12 @@ const PoliticalList: React.FC<ListProps> = ({
       value: "ანი ავაზნელი",
       label: (
         <div
-          style={{ display: "flex", alignItems: "center", gap: "10px" }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            width: "100%",
+          }}
           onClick={() => setShowComponent(false)}
         >
           <img
@@ -64,18 +69,23 @@ const PoliticalList: React.FC<ListProps> = ({
       ),
     },
     {
-      value: "ვალერია ზანგური",
+      value: "ვალიკო ზანგური",
       label: (
         <div
-          style={{ display: "flex", alignItems: "center", gap: "10px" }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            width: "100%",
+          }}
           onClick={() => setShowComponent(false)}
         >
           <img
-            src="https://letsenhance.io/static/334225cab5be263aad8e3894809594ce/75c5a/MainAfter.jpg"
-            alt="img2"
+            src="https://us.123rf.com/450wm/alexvolot/alexvolot2004/alexvolot200400046/alexvolot200400046.jpg?ver=6"
+            alt="img3"
             style={{ height: "30px", width: "30px", borderRadius: "50%" }}
           />
-          ვალერია ზანგური
+          ვალიკო ზანგური
         </div>
       ),
     },
@@ -83,7 +93,12 @@ const PoliticalList: React.FC<ListProps> = ({
       value: "დიმა ჭილაია",
       label: (
         <div
-          style={{ display: "flex", alignItems: "center", gap: "10px" }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            width: "100%",
+          }}
           onClick={() => setShowComponent(false)}
         >
           <img
@@ -123,7 +138,12 @@ const PoliticalList: React.FC<ListProps> = ({
           )}
         </ButtonTextContainer>
         {politicansList.map((person, index) => (
-          <Candidate key={index} userChoice={person} index={index} />
+          <Candidate
+            key={index}
+            userChoice={person}
+            index={index}
+            setPoliticansList={setPoliticansList}
+          />
         ))}
         {showChosenCandidat && (
           <ChooseCandidat
@@ -136,6 +156,7 @@ const PoliticalList: React.FC<ListProps> = ({
             setUserChoice={setUserChoice}
             setPoliticansList={setPoliticansList}
             showComponent={showComponent}
+            setShowComponent={setShowComponent}
           />
         )}
         {!showPoliticalList && (
