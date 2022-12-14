@@ -37,7 +37,6 @@ function App() {
         />
       )}
       <Header />
-
       <Routes>
         <Route path="/ratingList" element={<RatingList />} />
         <Route
@@ -56,6 +55,7 @@ function App() {
               setSupportMoney={setSupportMoney}
               addCandidat={addCandidat}
               setAddCandidat={setAddCandidat}
+              setShowPublicPage={setShowPublicPage}
             />
           }
         />

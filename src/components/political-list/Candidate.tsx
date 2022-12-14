@@ -41,6 +41,7 @@ const Candidate: React.FC<Candidate> = ({
         <h3>მხარდასაჭერი თანხა</h3>
         <MoneyChanger>
           <IconsContainer>
+            
             <ForGed placeholder={0 + " GeD"}></ForGed>
             <ForPerCent>
               <h3 style={{ display: "block", width: "100px" }}>პროცენტი</h3>

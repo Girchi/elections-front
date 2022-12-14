@@ -22,6 +22,7 @@ interface ListProps {
   supportMoney: number | null;
   addCandidat: boolean;
   setAddCandidat: (boolean: boolean) => void;
+  setShowPublicPage: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const PoliticalList: React.FC<ListProps> = ({
@@ -36,6 +37,7 @@ const PoliticalList: React.FC<ListProps> = ({
   supportMoney,
   addCandidat,
   setAddCandidat,
+  setShowPublicPage
 }) => {
   const [userChoice, setUserChoice] = useState("");
 
@@ -163,7 +165,7 @@ const PoliticalList: React.FC<ListProps> = ({
               დაამატე პოლიტიკოსი
               <img src={plusIcon} alt="plus-img" />
             </ButtonD>
-            <DraftPublish />
+            <DraftPublish setShowPublicPage={setShowPublicPage} />
           </ButtonDiv>
         )}
       </MainDiv>
