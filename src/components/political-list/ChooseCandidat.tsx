@@ -53,7 +53,7 @@ const ChooseCandidat: React.FC<ListProps> = ({
   }));
   return (
     <>
-    
+
       {showComponent && (
         <ChooseDiv>
           <Choose>
