@@ -16,7 +16,6 @@ export interface ModalProps {
 }
 
 const ModalPayment: React.FC<ModalProps> = ({
-  setModal,
   setShowPoliticalList,
   input,
   setInput,
@@ -24,6 +23,7 @@ const ModalPayment: React.FC<ModalProps> = ({
   setMoney,
   balance,
   setBalance,
+  setModal
 }) => {
   // const [input, setInput] = useState<number | string>("");
   const [checkboxInput, setCheckboxInput] = useState<string | boolean>(true);
@@ -69,7 +69,7 @@ const ModalPayment: React.FC<ModalProps> = ({
   };
 
   const closeHandler = () => {
-    setModal((prev) => !prev);
+    setModal(false);
   };
   const closeAndShowPoliticalListHandler = () => {
     if (input && input <= balance) {

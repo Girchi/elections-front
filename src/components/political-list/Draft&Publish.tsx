@@ -3,19 +3,19 @@ import styled from "styled-components";
 import Draft from "../../images/draft.png";
 import Publish from "../../images/publish.png";
 
-interface ListProps {
+interface Draft {
   setShowPublicPage: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const DraftPublish = ({ setShowPublicPage }: any) => {
+const DraftPublish: React.FC<Draft> = ({ setShowPublicPage }) => {
   return (
     <Both>
       <SaveD>
         <h4>დრაფტად შენახვა</h4>
         <img src={Draft} alt="draft" />
       </SaveD>
-      <PublishD>
-        <h4 onClick={() => setShowPublicPage(true)}>სიის გამოქვეყნება</h4>
+      <PublishD onClick={() => setShowPublicPage(true)}>
+        <h4 >სიის გამოქვეყნება</h4>
         <img src={Publish} alt="draft" />
       </PublishD>
     </Both>

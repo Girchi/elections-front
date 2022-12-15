@@ -23,7 +23,7 @@ function App() {
 
   return (
     <Main>
-      {showPublicPage && <MakePublic />}
+      {showPublicPage && <MakePublic setShowPublicPage={setShowPublicPage} />}
       {modal && (
         <ModalPayment
           setModal={setModal}
