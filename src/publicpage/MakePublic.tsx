@@ -2,24 +2,18 @@ import styled from "styled-components";
 import Xicon from "../images/xIcon.svg";
 import statusImg from "../images/Status.png";
 
-export interface ModalProps {
-  setModal: React.Dispatch<React.SetStateAction<boolean>>;
-  setShowPoliticalList: React.Dispatch<React.SetStateAction<boolean>>;
-  input: number;
-  setInput: React.Dispatch<React.SetStateAction<number>>;
-  money: number;
-  setMoney: React.Dispatch<React.SetStateAction<number>>;
-  balance: number;
-  setBalance: React.Dispatch<React.SetStateAction<number>>;
+export interface Public {
+  setShowPublicPage: React.Dispatch<React.SetStateAction<boolean>>;
+
 }
 
-const MakePublic = () => {
+const MakePublic: React.FC<Public> = ({ setShowPublicPage }) => {
   return (
     <ModalContainer>
       <Modal>
         <ModalHeader>
           <h3>გაასაჯაროვე პროფილი</h3>
-          <img src={Xicon} alt="cancel" style={{ cursor: "pointer" }} />
+          <img src={Xicon} alt="cancel" style={{ cursor: "pointer" }} onClick={() => setShowPublicPage(false)} />
         </ModalHeader>
         <ModalBody>
           <ModalCenter>
@@ -30,7 +24,7 @@ const MakePublic = () => {
           </ModalInput>
         </ModalBody>
         <ButtonContainer>
-          <span>გასაგებია</span>
+          <span onClick={() => setShowPublicPage(false)}>გასაგებია</span>
           <button>დადასტურება</button>
         </ButtonContainer>
       </Modal>
@@ -50,14 +44,14 @@ const ModalContainer = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 10;
-`;
+  `;
 
 const Modal = styled.div`
   max-width: 432px;
   width: 100%;
   background-color: #ffffff;
   border-radius: 8px;
-`;
+  `;
 
 const ModalHeader = styled.div`
   display: flex;
@@ -65,7 +59,7 @@ const ModalHeader = styled.div`
   border-width: 1px;
   border-bottom: 1px solid #e0e2e7;
   padding: 18px 24px;
-`;
+  `;
 
 const ModalBody = styled.form`
   display: flex;
@@ -75,15 +69,15 @@ const ModalBody = styled.form`
   gap: 24px;
   font-family: "TBC Contractica1";
   line-height: 24px;
-`;
+  `;
 
 const ModalCenter = styled.div`
   img {
     display: flex;
-    align-items: center;
-    margin: 0 auto;
+  align-items: center;
+  margin: 0 auto;
   }
-`;
+  `;
 
 const ModalInput = styled.div`
   display: flex;
@@ -91,12 +85,12 @@ const ModalInput = styled.div`
   flex-direction: column;
   position: relative;
   h4 {
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 25px;
-    color: #6f7680;
+  font-weight:500;
+  font-size: 15px;
+  line-height: 25px;
+  color: #6f7680;
   }
-`;
+  `;
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -107,19 +101,19 @@ const ButtonContainer = styled.div`
 
   border-top: 1px solid #e0e2e7;
   button {
-    width: 154px;
-    height: 40px;
-    background: #1a8917;
-    border-radius: 32px;
-    border: none;
-    padding: 8px 24px;
-    letter-spacing: 0.02em;
-    color: #ffffff;
-    margin-left: 30px;
-    opacity: 1;
-    cursor: pointer;
+  width: 154px;
+  height: 40px;
+  background: #1a8917;
+  border-radius: 32px;
+  border: none;
+  padding: 8px 24px;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  margin-left: 30px;
+  opacity: 1;
+  cursor: pointer;
   }
   span {
     cursor: pointer;
   }
-`;
+  `;
