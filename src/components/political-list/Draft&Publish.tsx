@@ -32,7 +32,6 @@ const Both = styled.div`
   margin-left: auto;
   gap: 12px;
 `;
-
 const SaveD = styled.button`
   width: 227px;
   height: 48px;
