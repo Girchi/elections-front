@@ -72,6 +72,7 @@ const ChooseCandidat: React.FC<ListProps> = ({
                     minWidth: "150px",
                     display: "flex",
                     columnGap: "15px",
+                    width: "100%",
                     alignItems: "center",
                     border: 0,
                     backgroundColor: "#FFFFFF",

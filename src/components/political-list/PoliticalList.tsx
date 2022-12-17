@@ -57,7 +57,6 @@ const PoliticalList: React.FC<ListProps> = ({
             display: "flex",
             alignItems: "center",
             gap: "10px",
-            width: "100%",
           }}
           onClick={() => setShowComponent(false)}
         >
@@ -78,7 +77,6 @@ const PoliticalList: React.FC<ListProps> = ({
             display: "flex",
             alignItems: "center",
             gap: "10px",
-            width: "100%",
           }}
           onClick={() => setShowComponent(false)}
         >
@@ -99,7 +97,6 @@ const PoliticalList: React.FC<ListProps> = ({
             display: "flex",
             alignItems: "center",
             gap: "10px",
-            width: "100%",
           }}
           onClick={() => setShowComponent(false)}
         >
